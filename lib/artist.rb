@@ -1,8 +1,13 @@
 require 'pry'
+require_relative "../lib/concerns/memorable.rb"
+require_relative "../lib/concerns/paramable.rb"
 
 class Artist
   attr_accessor :name
   attr_reader :songs
+  extend Memorable::ClassMethods
+  include Memorable::InstanceMethods
+  include Paramable::InstanceMethods
 
   @@artists = []
 
@@ -11,7 +16,7 @@ class Artist
   end
 
   def initialize
-    @@artists << self
+    super
     @songs = []
   end
 
@@ -19,13 +24,13 @@ class Artist
     @@artists
   end
 
-  def self.reset_all
-    self.all.clear
-  end
-
-  def self.count
-    @@artists.count
-  end
+  # def self.reset_all
+  #   self.all.clear
+  # end
+  #
+  # def self.count
+  #   @@artists.count
+  # end
 
   def add_song(song)
     @songs << song
@@ -36,8 +41,11 @@ class Artist
     songs.each { |song| add_song(song) }
   end
 
-  def to_param
-    name.downcase.gsub(' ', '-')
-  end
+  # def to_param
+  #   name.downcase.gsub(' ', '-')
+  # end
 
 end
+
+# binding.pry
+# "hello"
