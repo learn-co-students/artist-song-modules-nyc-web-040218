@@ -1,8 +1,7 @@
 require 'pry'
 
 class Song
-  attr_accessor :name
-  attr_reader :artist
+  attr_accessor :name, :artist
 
   @@songs = []
 
@@ -14,10 +13,6 @@ class Song
     @@songs.detect{|a| a.name == name}
   end
 
-  def artist=(artist)
-    @artist = artist
-  end
-
   def self.reset_all
     @@songs.clear
   end
@@ -27,7 +22,7 @@ class Song
   end
 
   def self.count
-    self.all.count
+    all.count
   end
 
   def self.all
